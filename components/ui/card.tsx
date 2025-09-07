@@ -1,30 +1,28 @@
-import * as React from "react";
+"use client";
+
 import { cn } from "../../lib/utils";
+import React from "react";
 
-export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Card: React.FC<CardProps> = ({ children, className }) => {
   return (
-    <div
-      className={cn("rounded-xl border bg-white shadow-md", className)}
-      {...props}
-    />
+    <div className={cn(
+      "bg-gray-900 text-white shadow-md rounded p-4 transition transform hover:scale-105",
+      className
+    )}>
+      {children}
+    </div>
   );
-}
+};
 
-export function CardHeader({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn("border-b p-4 font-semibold text-lg", className)}
-      {...props}
-    />
-  );
-}
+export const CardHeader: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+  <div className={cn("font-bold text-lg mb-2", className)}>{children}</div>
+);
 
-export function CardContent({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("p-4", className)} {...props} />;
-}
+export const CardContent: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+  <div className={cn("", className)}>{children}</div>
+);
